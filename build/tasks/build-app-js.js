@@ -13,7 +13,8 @@ const plumber = require('gulp-plumber');
 const wrapper = require('gulp-wrapper');
 const sourcemaps = require('gulp-sourcemaps');
 const ngAnnotate = require('gulp-ng-annotate');
-const angularWrapper = require('../utils/angular-wrapper');
+// const angularWrapper = require('../utils/angular-wrapper');
+const iifeWrapper = require('../utils/iife-wrapper');
 const packageFilename = require('../utils/package-filename');
 const templatesModuleStream = require('../utils/templates-module-stream');
 const build = require('../build');
@@ -53,7 +54,7 @@ module.exports = function buildAppJs() {
       console.error(error);
     })
     .pipe(ngAnnotate())
-    .pipe(wrapper(angularWrapper()));
+    .pipe(wrapper(iifeWrapper()));
 
   //Minify
   if (BUNDLE_JS) {

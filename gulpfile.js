@@ -13,6 +13,7 @@ const config = require('./build/config');
  */
 const test = require('./build/tasks/test');
 const clean = require('./build/tasks/clean');
+const copyFonts = require('./build/tasks/copy-fonts');
 const copyAssets = require('./build/tasks/copy-assets');
 const buildAppJs = require('./build/tasks/build-app-js');
 const buildLibJs = require('./build/tasks/build-lib-js');
@@ -36,7 +37,7 @@ console.log('Running in', chalk.magenta(config.ENV), 'environment');
 gulp.task('build', gulp.series(
   clean,
   gulp.parallel(
-    gulp.series(copyAssets, updateRedirects),
+    gulp.series(copyAssets, copyFonts, updateRedirects),
     buildConfig,
     buildAppJs,
     buildAppCss,
@@ -70,4 +71,5 @@ gulp.task('default', gulp.series(
  * Helper tasks accessible via CLI
  */
 gulp.task('clean', clean);
+gulp.task('fonts', copyFonts);
 gulp.task('assets', copyAssets);

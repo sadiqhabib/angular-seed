@@ -27,10 +27,14 @@ angular.module('App', [
 
   //App components
   'App.Home',
+  'App.Bootstrap',
 
   //Shared services
   'Shared.Moment.Service',
 
   //Shared filters
   'Shared.Moment.Filter',
+
+  // Shared Directives
+  'Shared.Bootstrap.Directives',
 ]);

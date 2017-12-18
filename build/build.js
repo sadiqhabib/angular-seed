@@ -7,6 +7,7 @@
 const path = require('path');
 const argv = require('yargs').argv;
 const pkg = require('../package.json');
+const mapLibs = lib => `node_modules/${lib}`;
 
 //Environment
 const ENV = argv.env || process.env.APP_ENV || 'dev';
@@ -31,6 +32,7 @@ const SRC_JS = ['app/**/*.js', 'app/components/**/*.js'];
 const SRC_TESTS = ['app/**/*.spec.js'];
 const SRC_SCSS = ['app/**/*.scss'];
 const SRC_HTML = ['app/components/**/*.html'];
+const SRC_FONTS = ['font-awesome/fonts/*'].map(mapLibs);
 
 //Libraries
 const SRC_LIB = [
@@ -48,15 +50,19 @@ const SRC_LIB = [
   'meanie-angular-storage/release/meanie-angular-storage.js',
   'meanie-angular-store/release/meanie-angular-store.js',
   'meanie-angular-url/release/meanie-angular-url.js',
-].map(lib => 'node_modules/' + lib);
+  'jquery/dist/jquery.js',
+  'popper.js/dist/umd/popper.js',
+  'bootstrap-beta/dist/js/bootstrap.js',
+].map(mapLibs);
 
 //Test libraries
 const SRC_LIB_TESTS = [
   'angular-mocks/angular-mocks.js',
-].map(lib => 'node_modules/' + lib);
+].map(mapLibs);
 
 //Destination folders
 let DEST_BUILD = `dist/${ENV}`;
+let DEST_FONTS = `${DEST_BUILD}/fonts`;
 let DEST_ASSETS = DEST_BUILD;
 let DEST_JS = `${DEST_BUILD}/app`;
 let DEST_CSS = `${DEST_BUILD}/css`;
@@ -102,9 +108,11 @@ module.exports = {
   DEST_JS,
   DEST_LIB,
   DEST_CSS,
+  DEST_FONTS,
 
   //Sources (JS)
   SRC_JS,
+  SRC_FONTS,
   SRC_ASSETS,
   SRC_CONFIG,
   SRC_TESTS,

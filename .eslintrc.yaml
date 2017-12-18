@@ -12,8 +12,9 @@ env:
   mocha: true
   jasmine: true
 globals:
-  angular: false
+  $: false
   Raven: false
+  angular: false
 rules:
   linebreak-style:
     - error
@@ -131,7 +132,7 @@ rules:
   no-unused-vars:
     - error
     - vars: all
-      args: all
+      args: after-used
   eol-last: error
   dot-notation: error
   space-infix-ops: error
